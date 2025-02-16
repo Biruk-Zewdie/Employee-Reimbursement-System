@@ -1,4 +1,4 @@
-package models;
+package com.biruk.ERS.models;
 
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class User {
     private String email;
 
     @Column (nullable = false)
-    private String passWord;
+    private String password;
 
     private String role;
 
@@ -35,13 +35,13 @@ public class User {
 
     }
 
-    public User(int userId, String firstName, String lastName, String userName, String email, String passWord, String role, List<ReimbursementClaim> reimbursementClaims) {
+    public User(int userId, String firstName, String lastName, String userName, String email, String password, String role, List<ReimbursementClaim> reimbursementClaims) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.email = email;
-        this.passWord = passWord;
+        this.password = password;
         this.role = role;
         this.reimbursementClaims = reimbursementClaims;
     }
@@ -87,11 +87,11 @@ public class User {
     }
 
     public String getPassWord() {
-        return passWord;
+        return password;
     }
 
     public void setPassWord(String passWord) {
-        this.passWord = passWord;
+        this.password = passWord;
     }
 
     public String getRole() {
@@ -118,7 +118,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
-                ", passWord='" + passWord + '\'' +
+                ", passWord='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", reimbursementClaims=" + reimbursementClaims +
                 '}';

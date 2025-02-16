@@ -1,4 +1,4 @@
-package models;
+package com.biruk.ERS.models;
 
 import jakarta.persistence.*;
 
