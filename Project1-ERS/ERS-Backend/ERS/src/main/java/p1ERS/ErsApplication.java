@@ -1,4 +1,4 @@
-package P1ERS;
+package com.biruk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 @EntityScan("com.biruk.models")
 @ComponentScan("com.biruk")
 public class ErsApplication {
-
 	public static void main(String[] args) {
 
 		SpringApplication.run(ErsApplication.class, args);
