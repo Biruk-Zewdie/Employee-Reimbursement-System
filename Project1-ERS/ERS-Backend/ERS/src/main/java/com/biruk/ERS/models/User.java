@@ -28,14 +28,13 @@ public class User {
 
     private String role;
 
-    @OneToMany
-    private List<ReimbursementClaim> reimbursementClaims;
 
     public User (){
 
     }
 
-    public User(int userId, String firstName, String lastName, String userName, String email, String password, String role, List<ReimbursementClaim> reimbursementClaims) {
+    public User(int userId, String firstName, String lastName, String userName, String password, String email, String role) {
+
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,7 +42,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.role = role;
-        this.reimbursementClaims = reimbursementClaims;
     }
 
     public int getUserId() {
@@ -102,13 +100,6 @@ public class User {
         this.role = role;
     }
 
-    public List<ReimbursementClaim> getReimbursementClaims() {
-        return reimbursementClaims;
-    }
-
-    public void setReimbursementClaims(List<ReimbursementClaim> reimbursementClaims) {
-        this.reimbursementClaims = reimbursementClaims;
-    }
 
     @Override
     public String toString() {
@@ -120,7 +111,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", passWord='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", reimbursementClaims=" + reimbursementClaims +
                 '}';
     }
 }

@@ -1,9 +1,11 @@
 package com.biruk.ERS.models;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 @Entity
 @Table (name="reimbursement")
 public class ReimbursementClaim {
@@ -20,10 +22,13 @@ public class ReimbursementClaim {
 
     private String Description;
 
-    @ManyToOne
+    private ReimbursementStatus reimbursementStatus;
+
+    @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId")
     private User userId;
 
-    private ReimbursementStatus reimbursementStatus;
+
 
     public ReimbursementClaim() {
     }

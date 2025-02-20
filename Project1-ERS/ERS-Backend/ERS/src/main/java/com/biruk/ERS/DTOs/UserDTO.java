@@ -1,33 +1,54 @@
 package com.biruk.ERS.DTOs;
 
-public class UserRegistrationDTO {
+//DTOs - used to transfer (Auth) data between different layers of our ERS.
+//purpose of using DTOs here
+// 1. Encapsulation of data - Prevents exposing sensitive Auth info directly to the client.
+// 2. Data Transformation - Allows converting database entities into a format suitable for APIs.
+// 3. Security - Hides sensitive entity fields from being sent to the client
+// 4 .Validation - Enables request validation using annotations like @NotNull, @Size, etc /we can use service layer too
 
-    //DTOs - used to transfer (Auth) data between different layers of our ERS.
-    //purpose of using DTOs here
-    // 1. Encapsulation of data - Prevents exposing sensitive Auth info directly to the client.
-    // 2. Data Transformation - Allows converting database entities into a format suitable for APIs.
-    // 3. Security - Hides sensitive entity fields from being sent to the client
-    // 4 .Validation - Enables request validation using annotations like @NotNull, @Size, etc /we can use service layer too
+//They are often used to model data that is being sent between client and server
 
+import com.biruk.ERS.models.User;
 
+public class UserDTO {
+
+    //In this case, we want to send User info without including that raw password
+    private int userId;
     private String firstName;
     private String lastName;
     private String userName;
-    private String password;
     private String email;
     private String role;
 
-    public UserRegistrationDTO() {
+    public UserDTO() {
 
     }
 
-    public UserRegistrationDTO(String firstName, String lastName, String userName, String password, String email, String role) {
+    public UserDTO(int userId, String firstName, String lastName, String userName, String email, String role) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        this.password = password;
         this.email = email;
         this.role = role;
+    }
+
+    public UserDTO (User u){
+        this.userId = u.getUserId();
+        this.firstName = u.getFirstName();
+        this.lastName = u.getLastName();
+        this.userName = u.getUserName();
+        this.email = u.getEmail();
+        this.role = u.getRole();
+    }
+
+    public int getUserId () {
+        return userId;
+    }
+
+    public void setUserId (int userId){
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -54,14 +75,6 @@ public class UserRegistrationDTO {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -81,10 +94,10 @@ public class UserRegistrationDTO {
     @Override
     public String toString() {
         return "UserRegistrationDTO{" +
+                "userId='" + userId + '\'' +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 '}';
