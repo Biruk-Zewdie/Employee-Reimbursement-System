@@ -18,10 +18,6 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    //Create User/account /register
-    public User register (User user){
-
-    }
 
     //Get all users from DB
 

@@ -26,19 +26,19 @@ public class ReimbursementClaim {
 
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
-    private User userId;
+    private User user;
 
 
 
     public ReimbursementClaim() {
     }
 
-    public ReimbursementClaim(int requestId, Date requestDate, double amount, String description, User userId, ReimbursementStatus reimbursementStatus) {
+    public ReimbursementClaim(int requestId, Date requestDate, double amount, String description, User user, ReimbursementStatus reimbursementStatus) {
         this.requestId = requestId;
         this.requestDate = requestDate;
         this.amount = amount;
         Description = description;
-        this.userId = userId;
+        this.user = user;
         this.reimbursementStatus = reimbursementStatus;
     }
 
@@ -74,12 +74,12 @@ public class ReimbursementClaim {
         Description = description;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public ReimbursementStatus getReimbursementStatus() {
@@ -97,7 +97,7 @@ public class ReimbursementClaim {
                 ", requestDate=" + requestDate +
                 ", amount=" + amount +
                 ", Description='" + Description + '\'' +
-                ", userId=" + userId +
+                ", user=" + user +
                 ", reimbursementStatus=" + reimbursementStatus +
                 '}';
     }

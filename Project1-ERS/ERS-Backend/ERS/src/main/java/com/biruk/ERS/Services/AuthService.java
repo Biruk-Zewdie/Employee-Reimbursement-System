@@ -26,7 +26,7 @@ public class AuthService {
                 registeredUser.getUserId(),
                 registeredUser.getFirstName(),
                 registeredUser.getLastName(),
-                registeredUser.getUserName(),
+                registeredUser.getUsername(),
                 registeredUser.getEmail(),
                 registeredUser.getRole()
         );

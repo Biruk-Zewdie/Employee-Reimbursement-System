@@ -17,7 +17,9 @@ public class UserDTO {
     private int userId;
     private String firstName;
     private String lastName;
-    private String userName;
+    private String username
+
+;
     private String email;
     private String role;
 
@@ -25,11 +27,13 @@ public class UserDTO {
 
     }
 
-    public UserDTO(int userId, String firstName, String lastName, String userName, String email, String role) {
+    public UserDTO(int userId, String firstName, String lastName, String username
+
+, String email, String role) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.role = role;
     }
@@ -38,7 +42,7 @@ public class UserDTO {
         this.userId = u.getUserId();
         this.firstName = u.getFirstName();
         this.lastName = u.getLastName();
-        this.userName = u.getUserName();
+        this.username = u.getUsername();
         this.email = u.getEmail();
         this.role = u.getRole();
     }
@@ -67,12 +71,12 @@ public class UserDTO {
         this.lastName = lastName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -97,7 +101,7 @@ public class UserDTO {
                 "userId='" + userId + '\'' +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
+                ", username ='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 '}';

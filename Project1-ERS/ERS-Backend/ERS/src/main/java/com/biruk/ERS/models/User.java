@@ -19,7 +19,7 @@ public class User {
     private String lastName;
 
     @Column (nullable = false, unique = true)
-    private String userName;
+    private String username;
 
     private String email;
 
@@ -33,12 +33,14 @@ public class User {
 
     }
 
-    public User(int userId, String firstName, String lastName, String userName, String password, String email, String role) {
+    public User(int userId, String firstName, String lastName, String username
+
+, String password, String email, String role) {
 
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
@@ -68,12 +70,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -107,7 +109,7 @@ public class User {
                 "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
+                ", username ='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", passWord='" + password + '\'' +
                 ", role='" + role + '\'' +
