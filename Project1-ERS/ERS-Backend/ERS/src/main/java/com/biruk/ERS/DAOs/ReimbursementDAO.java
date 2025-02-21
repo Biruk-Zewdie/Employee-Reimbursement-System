@@ -11,4 +11,7 @@ import java.util.List;
 public interface ReimbursementDAO extends JpaRepository <ReimbursementClaim, Integer>{
 
     public List<ReimbursementClaim> getByUser_UserId (int userId);
+
+    //Fetch reimbursements with "Pending..." status.
+    public List<ReimbursementClaim> findByReimbursementStatus(ReimbursementClaim.ReimbursementStatus status);
 }

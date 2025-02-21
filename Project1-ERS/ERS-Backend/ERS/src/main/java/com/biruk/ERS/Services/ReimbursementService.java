@@ -103,6 +103,22 @@ public class ReimbursementService {
 
     //Get reimbursement claim by Pending Status
 
+    public List <ReimbursementDTO> getPendingReimbursements () {
+        List <ReimbursementClaim> pendingClaim = reimbursementDAO.findByReimbursementStatus(ReimbursementClaim.ReimbursementStatus.pending);
+
+        if (pendingClaim.isEmpty()){
+            throw new NoSuchElementException("No pending reimbursements found.");
+        }
+
+        List <ReimbursementDTO> returnedPendingDtoList = new ArrayList<>();
+
+        for (ReimbursementClaim claim : pendingClaim){
+            returnedPendingDtoList.add(new ReimbursementDTO(claim));
+        }
+
+        return returnedPendingDtoList;
+    }
+
 
 
     //Delete reimbursement claim by request ID - only done by manager
