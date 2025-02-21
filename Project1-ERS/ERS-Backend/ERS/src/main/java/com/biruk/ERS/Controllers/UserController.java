@@ -5,11 +5,8 @@ import com.biruk.ERS.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 
@@ -28,16 +25,19 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers () {
 
-        return ResponseEntity.ok(userService.getAllUsers());
+        List<UserDTO> users = userService.getAllUsers();
+
+        return ResponseEntity.ok(users);
 
     }
-//
-//    @GetMapping("/{Id}")
-//    public ResponseEntity<UserDTO> getUserById (@PathVariable int id) {
-//
-//
-//
-//    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable int userId) {
+
+        UserDTO userDTO = userService.getUserById(userId);
+        return ResponseEntity.ok(userDTO);
+
+    }
 
 
 
