@@ -13,6 +13,13 @@ import java.util.Objects;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+//✅ This prevents 500 errors and returns a meaningful 404 response.
+//✅ Now the API behaves like a well-designed RESTful service.
+//✅ Your users (or front-end) can easily understand the error and handle it properly.
+
+
+    //handles Illegal Argument Exception (for Auth purpose)
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity <Map<String,Object>> handleIllegalArgumentException (IllegalArgumentException e){
 
@@ -25,6 +32,8 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(errorResponse,HttpStatus.UNAUTHORIZED);
     }
+
+    //handles No Such Element Exception (when reimbursement claim or user is not found).
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<Map<String, Object>> handleNoSuchElementException (NoSuchElementException e){
