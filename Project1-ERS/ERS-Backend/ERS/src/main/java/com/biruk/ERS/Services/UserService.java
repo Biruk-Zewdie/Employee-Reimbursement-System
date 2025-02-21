@@ -4,9 +4,11 @@ import com.biruk.ERS.DAOs.UserDAO;
 import com.biruk.ERS.DTOs.UserDTO;
 import com.biruk.ERS.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class UserService {
 
     private final UserDAO userDAO;
