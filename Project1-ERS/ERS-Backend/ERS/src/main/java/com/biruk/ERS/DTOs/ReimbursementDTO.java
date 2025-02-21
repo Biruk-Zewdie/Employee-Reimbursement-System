@@ -5,42 +5,42 @@ import com.biruk.ERS.models.User;
 
 public class ReimbursementDTO {
 
-    private User userId;
-    private ReimbursementClaim amount;
-    private ReimbursementClaim description;
+    private int userId;
+    private double amount;
+    private String description;
 
 
     public ReimbursementDTO (){
 
     }
 
-    public ReimbursementDTO (User userId, ReimbursementClaim amount, ReimbursementClaim description){
+    public ReimbursementDTO (int userId, double amount, String description){
         this.userId = userId;
         this.amount = amount;
         this.description = description;
     }
 
-    public User getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public ReimbursementClaim getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(ReimbursementClaim amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public ReimbursementClaim getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(ReimbursementClaim description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

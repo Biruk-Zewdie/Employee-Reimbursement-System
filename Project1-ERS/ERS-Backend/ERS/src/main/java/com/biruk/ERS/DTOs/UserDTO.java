@@ -27,9 +27,7 @@ public class UserDTO {
 
     }
 
-    public UserDTO(int userId, String firstName, String lastName, String username
-
-, String email, String role) {
+    public UserDTO(int userId, String firstName, String lastName, String username, String email, String role) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;

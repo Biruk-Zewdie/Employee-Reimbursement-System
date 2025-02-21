@@ -5,8 +5,11 @@ import com.biruk.ERS.DAOs.UserDAO;
 import com.biruk.ERS.DTOs.ReimbursementDTO;
 import com.biruk.ERS.DTOs.UserDTO;
 import com.biruk.ERS.models.ReimbursementClaim;
+import com.biruk.ERS.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class ReimbursementService {
@@ -21,13 +24,31 @@ public class ReimbursementService {
 
     }
 
-//    public ReimbursementClaim createReimbursement (ReimbursementDTO reimbursementDTO){
-//
-//        ReimbursementClaim newClaim = new ReimbursementClaim(
-//
-//        );
-//
-//    }
+    //Create a reimbursement
+    public ReimbursementClaim createReimbursement (ReimbursementDTO reimbursementDTO){
 
+        ReimbursementClaim newClaim = new ReimbursementClaim(
+                0,
+                null,
+                reimbursementDTO.getAmount(),
+                reimbursementDTO.getDescription(),
+                null,
+                null
+        );
+
+        Optional<User> user = userDAO.findById(reimbursementDTO.getUserId());
+
+        //if the user doesn't exist, it will be empty
+        if (user.isEmpty()){
+            throw new IllegalArgumentException("user doesn't exist!");
+        }else {
+            newClaim.setUser(user.get());
+        }
+
+        return reimbursementDAO.save(newClaim);
+
+    }
+
+    //get reimbursement claim by Id
 
 }

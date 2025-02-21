@@ -37,7 +37,7 @@ public class ReimbursementClaim {
         this.requestId = requestId;
         this.requestDate = requestDate;
         this.amount = amount;
-        Description = description;
+        this.Description = description;
         this.user = user;
         this.reimbursementStatus = reimbursementStatus;
     }

@@ -41,5 +41,7 @@ public class UserService {
 
     }
 
+    //get users by userId 
+
 
 }
