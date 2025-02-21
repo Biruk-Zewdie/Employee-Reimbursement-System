@@ -27,9 +27,10 @@ public class ReimbursementService {
     //Create a reimbursement
     public ReimbursementClaim createReimbursement (ReimbursementDTO reimbursementDTO){
 
+        System.out.println(reimbursementDTO);
+
         ReimbursementClaim newClaim = new ReimbursementClaim(
                 0,
-                null,
                 reimbursementDTO.getAmount(),
                 reimbursementDTO.getDescription(),
                 null,

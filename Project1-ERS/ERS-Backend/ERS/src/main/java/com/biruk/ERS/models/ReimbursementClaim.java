@@ -14,8 +14,6 @@ public class ReimbursementClaim {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int requestId;
 
-    @Column(nullable = false)
-    private Date requestDate;
 
     @Column(nullable = false)
     private double amount;
@@ -33,9 +31,8 @@ public class ReimbursementClaim {
     public ReimbursementClaim() {
     }
 
-    public ReimbursementClaim(int requestId, Date requestDate, double amount, String description, User user, ReimbursementStatus reimbursementStatus) {
+    public ReimbursementClaim(int requestId, double amount, String description, User user, ReimbursementStatus reimbursementStatus) {
         this.requestId = requestId;
-        this.requestDate = requestDate;
         this.amount = amount;
         this.Description = description;
         this.user = user;
@@ -48,14 +45,6 @@ public class ReimbursementClaim {
 
     public void setRequestId(int requestId) {
         this.requestId = requestId;
-    }
-
-    public Date getRequestDate() {
-        return requestDate;
-    }
-
-    public void setRequestDate(Date requestDate) {
-        this.requestDate = requestDate;
     }
 
     public double getAmount() {
@@ -94,7 +83,6 @@ public class ReimbursementClaim {
     public String toString() {
         return "ReimbursementClaim{" +
                 "requestId=" + requestId +
-                ", requestDate=" + requestDate +
                 ", amount=" + amount +
                 ", Description='" + Description + '\'' +
                 ", user=" + user +

@@ -42,6 +42,10 @@ public class UserService {
     }
 
     //get users by userId
+//
+//    public List <UserDTO> getUserById (){
+//
+//    }
 
 
 }

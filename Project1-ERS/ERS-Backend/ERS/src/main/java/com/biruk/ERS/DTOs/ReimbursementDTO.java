@@ -18,6 +18,7 @@ public class ReimbursementDTO {
         this.userId = userId;
         this.amount = amount;
         this.description = description;
+
     }
 
     public int getUserId() {

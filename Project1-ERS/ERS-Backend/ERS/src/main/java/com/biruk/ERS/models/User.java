@@ -33,9 +33,7 @@ public class User {
 
     }
 
-    public User(int userId, String firstName, String lastName, String username
-
-, String password, String email, String role) {
+    public User(int userId, String firstName, String lastName, String username, String password, String email, String role) {
 
         this.userId = userId;
         this.firstName = firstName;
@@ -86,12 +84,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassWord() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.password = passWord;
+    public void setPassWord(String password) {
+        this.password = password;
     }
 
     public String getRole() {

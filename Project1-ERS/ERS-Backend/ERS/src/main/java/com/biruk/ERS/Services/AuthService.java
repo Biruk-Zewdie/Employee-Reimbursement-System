@@ -19,6 +19,8 @@ public class AuthService {
 
     public UserDTO registerUser (User user){
 
+        System.out.println(user);
+
         User  registeredUser = userDAO.save(user);
 
         //converting user to userDTO before sending it to the cloud.
@@ -31,10 +33,14 @@ public class AuthService {
                 registeredUser.getRole()
         );
 
+
+
         return newUserDTO;
     }
 
     public UserDTO login (LoginDTO loginDTO){
+
+        System.out.println(loginDTO);
 
         if (loginDTO.getUsername() == null || loginDTO.getUsername().isBlank()){
             throw new IllegalArgumentException("Username cannot be empty!");
@@ -48,6 +54,7 @@ public class AuthService {
                 loginDTO.getUsername(),
                 loginDTO.getPassword()).orElse(null);
 
+        System.out.println(returnedUser);
 
         if (returnedUser == null){
             throw new IllegalArgumentException("Invalid username or password!");
