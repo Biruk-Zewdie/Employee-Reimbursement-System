@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -70,7 +71,49 @@ public class ReimbursementService {
 
     }
 
-    //Get reimbursement claim by Id
+    //Get reimbursement claim by requestId
 
+    public ReimbursementDTO getReimbursementById (int requestId){
+
+        ReimbursementClaim reimbursementClaim = reimbursementDAO.findById(requestId).orElseThrow(() ->
+                new NoSuchElementException("Reimbursement not found with Request ID: " + requestId));
+
+        return new ReimbursementDTO(reimbursementClaim);
+
+    }
+
+    //Get all reimbursement claims requested under a specific user(userId)
+    public List <ReimbursementDTO> getReimbursementByUserId (int userId){
+        List <ReimbursementClaim> claims = reimbursementDAO.getByUser_UserId(userId);
+
+        if (claims.isEmpty()){
+            throw new NoSuchElementException("No reimbursement found for user ID: " + userId);
+        }
+
+        List <ReimbursementDTO> returnedDtoList = new ArrayList<>();
+
+        for (ReimbursementClaim claim: claims){
+            returnedDtoList.add(new ReimbursementDTO(claim));
+        }
+
+        return returnedDtoList;
+    }
+
+
+
+    //Get reimbursement claim by Pending Status
+
+
+
+    //Delete reimbursement claim by request ID - only done by manager
+    public void deleteReimbursement (int requestId){
+
+        if (!reimbursementDAO.existsById(requestId)){
+            throw new NoSuchElementException("User not found with ID: " + requestId);
+        }
+
+        reimbursementDAO.deleteById(requestId);
+
+    }
 
 }

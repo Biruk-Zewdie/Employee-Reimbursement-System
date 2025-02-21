@@ -25,7 +25,8 @@ public class ReimbursementDTO {
     //way cleaner way to format a Reimbursements into a DTO
 
     public ReimbursementDTO (ReimbursementClaim r) {
-        this.userId = r.getRequestId();
+//        this.userId = r.getRequestId();
+        this.userId = r.getUser().getUserId();
         this.amount = r.getAmount();
         this.description = r.getDescription();
     }
