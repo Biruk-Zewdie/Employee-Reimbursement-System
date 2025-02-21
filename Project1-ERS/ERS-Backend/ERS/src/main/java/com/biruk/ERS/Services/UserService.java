@@ -42,10 +42,25 @@ public class UserService {
     }
 
     //get users by userId
-//
-//    public List <UserDTO> getUserById (){
-//
-//    }
+
+    public UserDTO getUserById (int userId){
+
+        User user = userDAO.findById(userId).orElseThrow( () ->
+                new NoSuchElementException("User not found with ID : " + userId));
+
+        return new UserDTO(user);
+
+    }
+
+    //Delete user by ID
+
+    public void deleteUserById (int userId){
+
+        if (!userDAO.existsById(userId)){
+            throw new NoSuchElementException("User not found with ID: " + userId);
+        }
+        userDAO.deleteById(userId);
+    }
 
 
 }

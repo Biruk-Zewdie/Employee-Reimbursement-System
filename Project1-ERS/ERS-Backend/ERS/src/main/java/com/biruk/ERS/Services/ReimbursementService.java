@@ -9,6 +9,8 @@ import com.biruk.ERS.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,6 +52,25 @@ public class ReimbursementService {
 
     }
 
-    //get reimbursement claim by Id
+    //Get all reimbursements claims
+
+    public List<ReimbursementDTO> getAllReimbursements () {
+
+        List<ReimbursementClaim> returnedReimbursements = reimbursementDAO.findAll();
+
+        //convert the reimbursements into List of Reimbursement DTOs
+        List<ReimbursementDTO> reimbursementDTOs = new ArrayList<>();
+
+        for (int i = 0; i < returnedReimbursements.size(); i++){
+            ReimbursementClaim r = returnedReimbursements.get(i);
+            reimbursementDTOs.add(new ReimbursementDTO(r));
+        }
+
+        return reimbursementDTOs;
+
+    }
+
+    //Get reimbursement claim by Id
+
 
 }
