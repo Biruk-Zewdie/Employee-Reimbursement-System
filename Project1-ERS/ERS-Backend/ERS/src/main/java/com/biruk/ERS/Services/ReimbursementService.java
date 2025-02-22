@@ -6,6 +6,7 @@ import com.biruk.ERS.DTOs.ReimbursementDTO;
 import com.biruk.ERS.DTOs.UserDTO;
 import com.biruk.ERS.models.ReimbursementClaim;
 import com.biruk.ERS.models.User;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -151,15 +152,13 @@ public class ReimbursementService {
     }
 
     //update Reimbursement when the manager approves or denies
-
+    @Transactional
     public ReimbursementDTO updateReimbursementStatus (int requestId, ReimbursementClaim.ReimbursementStatus newStatus){
         ReimbursementClaim claim = reimbursementDAO.findById(requestId).orElseThrow(() ->
                 new NoSuchElementException("Reimbursement not found with ID: " + requestId));
 
         claim.setReimbursementStatus(newStatus);
-        reimbursementDAO.save(claim);
-
-        return new ReimbursementDTO(claim);      //return updated response
+        return new ReimbursementDTO(reimbursementDAO.save(claim));      //return updated response
     }
 
 }

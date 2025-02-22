@@ -1,5 +1,6 @@
 package com.biruk.ERS.Controllers;
 
+import com.biruk.ERS.Aspects.ManagerOnly;
 import com.biruk.ERS.DTOs.ReimbursementDTO;
 import com.biruk.ERS.Services.ReimbursementService;
 import com.biruk.ERS.models.ReimbursementClaim;
@@ -33,6 +34,7 @@ public class ReimbursementController {
 
     //get all reimbursements (only for managers)
     @GetMapping
+    @ManagerOnly
     public ResponseEntity<List<ReimbursementDTO>> getAllReimbursements () {
 
         List<ReimbursementDTO> reimbursementClaims = reimbursementService.getAllReimbursements();
@@ -48,6 +50,7 @@ public class ReimbursementController {
     }
 
     @GetMapping("/pending")
+    @ManagerOnly
     public ResponseEntity<List<ReimbursementDTO>> getPendingReimbursements () {
         List<ReimbursementDTO> pendingReimbursements = reimbursementService.getPendingReimbursements();
 
@@ -56,6 +59,7 @@ public class ReimbursementController {
 
 
     @PatchMapping("/{requestId}/status")
+    @ManagerOnly
     public ResponseEntity<ReimbursementDTO> updateStatus (@PathVariable int requestId, @RequestParam ReimbursementClaim.ReimbursementStatus status){
 
         ReimbursementDTO updateClaim = reimbursementService.updateReimbursementStatus(requestId, status);
@@ -64,6 +68,7 @@ public class ReimbursementController {
     }
 
     @DeleteMapping("/{requestId}")
+    @ManagerOnly
     public ResponseEntity<String> deleteReimbursement (@PathVariable int requestId){
 
         reimbursementService.deleteReimbursement(requestId);

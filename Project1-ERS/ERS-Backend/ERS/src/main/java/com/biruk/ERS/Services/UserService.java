@@ -3,6 +3,7 @@ package com.biruk.ERS.Services;
 import com.biruk.ERS.DAOs.UserDAO;
 import com.biruk.ERS.DTOs.UserDTO;
 import com.biruk.ERS.models.User;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +54,7 @@ public class UserService {
     }
 
     //Delete user by ID
-
+    @Transactional
     public void deleteUserById (int userId){
 
         if (!userDAO.existsById(userId)){

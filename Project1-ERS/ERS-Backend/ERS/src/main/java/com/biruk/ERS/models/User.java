@@ -28,12 +28,16 @@ public class User {
 
     private String role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReimbursementClaim> reimbursements;
+
+
 
     public User (){
-
+        this.reimbursements = new ArrayList<>();
     }
 
-    public User(int userId, String firstName, String lastName, String username, String password, String email, String role) {
+    public User(int userId, String firstName, String lastName, String username, String password, String email, String role, List<ReimbursementClaim> reimbursements) {
 
         this.userId = userId;
         this.firstName = firstName;
@@ -42,6 +46,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.reimbursements = reimbursements;
     }
 
     public int getUserId() {
@@ -100,6 +105,13 @@ public class User {
         this.role = role;
     }
 
+    public List<ReimbursementClaim> getReimbursements() {
+        return reimbursements;
+    }
+
+    public void setReimbursements(List<ReimbursementClaim> reimbursements) {
+        this.reimbursements = reimbursements;
+    }
 
     @Override
     public String toString() {
@@ -111,6 +123,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", passWord='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", reimbursementsCount=" + reimbursements.size() +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.biruk.ERS.Controllers;
 
+import com.biruk.ERS.Aspects.ManagerOnly;
 import com.biruk.ERS.DTOs.ReimbursementDTO;
 import com.biruk.ERS.DTOs.UserDTO;
 import com.biruk.ERS.Services.UserService;
@@ -25,6 +26,7 @@ public class UserController {
     }
 
     @GetMapping
+    @ManagerOnly
     public ResponseEntity<List<UserDTO>> getAllUsers () {
 
         List<UserDTO> users = userService.getAllUsers();
@@ -42,6 +44,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
+    @ManagerOnly
     public ResponseEntity<String> deleteUserById (@PathVariable int userId){
         userService.deleteUserById(userId);
         return ResponseEntity.ok("User deleted Successfully!");
