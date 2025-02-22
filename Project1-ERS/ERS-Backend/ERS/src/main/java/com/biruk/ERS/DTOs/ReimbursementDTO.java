@@ -12,7 +12,9 @@ public class ReimbursementDTO {
     private double amount;
     private String description;
     private ReimbursementClaim.ReimbursementStatus reimbursementStatus;
-    private int userId;
+    private UserDTO user;
+//    private int userId;
+
 
 
     public ReimbursementDTO (){
@@ -21,13 +23,13 @@ public class ReimbursementDTO {
     }
 
     public ReimbursementDTO(int requestId, LocalDateTime requestDate, double amount, String description,
-                            ReimbursementClaim.ReimbursementStatus reimbursementStatus, int userId) {
+                            ReimbursementClaim.ReimbursementStatus reimbursementStatus, UserDTO user) {
         this.requestId = requestId;
         this.requestDate = requestDate;
         this.amount = amount;
         this.description = description;
         this.reimbursementStatus = reimbursementStatus;
-        this.userId = userId;
+        this.user = user;
     }
 
     //see this in use in get all reimbursements in ReimbursementService
@@ -39,7 +41,7 @@ public class ReimbursementDTO {
         this.amount = r.getAmount();
         this.description = r.getDescription();
         this.reimbursementStatus = r.getReimbursementStatus();
-        this.userId = r.getUser().getUserId();
+        this.user = new UserDTO(r.getUser());
     }
 
     public int getRequestId() {
@@ -83,12 +85,12 @@ public class ReimbursementDTO {
         this.reimbursementStatus = reimbursementStatus;
     }
 
-    public int getUserId() {
-        return userId;
+    public UserDTO getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserDTO(UserDTO user) {
+        this.user = user;
     }
 
     @Override
@@ -99,7 +101,7 @@ public class ReimbursementDTO {
                 ", amount=" + amount +
                 ", description='" + description + '\'' +
                 ", reimbursementStatus=" + reimbursementStatus +
-                ", userId=" + userId +
+                ", user=" + user +
                 '}';
     }
 }

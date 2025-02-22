@@ -17,9 +17,7 @@ public class UserDTO {
     private int userId;
     private String firstName;
     private String lastName;
-    private String username
-
-;
+    private String username;
     private String email;
     private String role;
 
@@ -93,13 +91,14 @@ public class UserDTO {
         this.role = role;
     }
 
+
     @Override
     public String toString() {
-        return "UserRegistrationDTO{" +
-                "userId='" + userId + '\'' +
-                "firstName='" + firstName + '\'' +
+        return "UserDTO{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", username ='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 '}';

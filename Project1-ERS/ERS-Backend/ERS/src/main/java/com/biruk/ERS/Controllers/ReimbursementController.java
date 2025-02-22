@@ -4,6 +4,7 @@ import com.biruk.ERS.DTOs.ReimbursementDTO;
 import com.biruk.ERS.Services.ReimbursementService;
 import com.biruk.ERS.models.ReimbursementClaim;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +24,10 @@ public class ReimbursementController {
 
     //Create a new reimbursement request
     @PostMapping
-    public ResponseEntity<ReimbursementClaim> createReimbursement (@RequestBody ReimbursementDTO reimbursementDTO) {
-
-        return ResponseEntity.accepted().body(reimbursementService.createReimbursement(reimbursementDTO));
+    public ResponseEntity<ReimbursementDTO> createReimbursement (@RequestBody ReimbursementDTO reimbursementDTO) {
+            ReimbursementClaim createdClaim = reimbursementService.createReimbursement(reimbursementDTO);
+            ReimbursementDTO responseDTO = new ReimbursementDTO(createdClaim);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
 
     }
 
