@@ -39,7 +39,7 @@ public class ReimbursementService {
                 LocalDateTime.now(),
                 reimbursementDTO.getAmount(),
                 reimbursementDTO.getDescription(),
-                reimbursementDTO.getReimbursementStatus(),        
+                reimbursementDTO.getReimbursementStatus(),
                 null                      //user will be set later
         );
 
@@ -135,6 +135,18 @@ public class ReimbursementService {
 
         reimbursementDAO.deleteById(requestId);
 
+    }
+
+    //update Reimbursement when the manager approves or denies
+
+    public ReimbursementDTO updateReimbursementStatus (int requestId, ReimbursementClaim.ReimbursementStatus newStatus){
+        ReimbursementClaim claim = reimbursementDAO.findById(requestId).orElseThrow(() ->
+                new NoSuchElementException("Reimbursement not found with ID: " + requestId));
+
+        claim.setReimbursementStatus(newStatus);
+        reimbursementDAO.save(claim);
+
+        return new ReimbursementDTO(claim);      //return updated response
     }
 
 }

@@ -53,4 +53,30 @@ public class ReimbursementController {
     }
 
 
+    @PatchMapping("/{requestId}/status")
+    public ResponseEntity<ReimbursementDTO> updateStatus (@PathVariable int requestId, @RequestParam ReimbursementClaim.ReimbursementStatus status){
+
+        ReimbursementDTO updateClaim = reimbursementService.updateReimbursementStatus(requestId, status);
+
+        return  ResponseEntity.ok(updateClaim);
+    }
+
+    @DeleteMapping("/{requestId}")
+    public ResponseEntity<String> deleteReimbursement (@PathVariable int requestId){
+
+        reimbursementService.deleteReimbursement(requestId);
+        return  ResponseEntity.ok("User deleted successfully!");
+
+    }
+
+    @GetMapping("/user/{userId}")
+    public  ResponseEntity<List<ReimbursementDTO>> getReimbursementByUserId ( @PathVariable int userId) {
+
+        List <ReimbursementDTO> reimbursements = reimbursementService.getReimbursementByUserId(userId);
+
+        return ResponseEntity.ok(reimbursements);
+
+    }
+
+
 }
