@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/reimbursements")
 @CrossOrigin
@@ -19,6 +21,7 @@ public class ReimbursementController {
         this.reimbursementService = reimbursementService;
     }
 
+    //Create a new reimbursement request
     @PostMapping
     public ResponseEntity<ReimbursementClaim> createReimbursement (@RequestBody ReimbursementDTO reimbursementDTO) {
 
@@ -26,7 +29,15 @@ public class ReimbursementController {
 
     }
 
-    //get reimbursements by userId
+    //get all reimbursements (only for managers)
+    @GetMapping
+    public ResponseEntity<List<ReimbursementDTO>> getAllReimbursements () {
+
+        List<ReimbursementDTO> reimbursementClaims = reimbursementService.getAllReimbursements();
+
+        return ResponseEntity.ok(reimbursementClaims);
+
+    }
 
 
 }

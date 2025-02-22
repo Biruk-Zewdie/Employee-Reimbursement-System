@@ -3,6 +3,7 @@ package com.biruk.ERS.models;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Component
@@ -13,6 +14,9 @@ public class ReimbursementClaim {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int requestId;
+
+    @Column(name = "request_date", nullable = false)
+    private LocalDateTime requestDate;
 
 
     @Column(nullable = false)
@@ -31,12 +35,13 @@ public class ReimbursementClaim {
     public ReimbursementClaim() {
     }
 
-    public ReimbursementClaim(int requestId, double amount, String description, User user, ReimbursementStatus reimbursementStatus) {
+    public ReimbursementClaim(int requestId, LocalDateTime requestDate, double amount, String description, ReimbursementStatus reimbursementStatus, User user) {
         this.requestId = requestId;
+        this.requestDate = requestDate;
         this.amount = amount;
         this.Description = description;
-        this.user = user;
         this.reimbursementStatus = reimbursementStatus;
+        this.user = user;
     }
 
     public int getRequestId() {
@@ -47,6 +52,14 @@ public class ReimbursementClaim {
         this.requestId = requestId;
     }
 
+    public LocalDateTime getRequestDate (){
+        return requestDate;
+    }
+
+    public void setRequestDate (LocalDateTime requestDate){
+        this.requestDate = requestDate;
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -55,20 +68,13 @@ public class ReimbursementClaim {
         this.amount = amount;
     }
 
+
     public String getDescription() {
         return Description;
     }
 
     public void setDescription(String description) {
         Description = description;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public ReimbursementStatus getReimbursementStatus() {
@@ -79,14 +85,23 @@ public class ReimbursementClaim {
         this.reimbursementStatus = reimbursementStatus;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "ReimbursementClaim{" +
                 "requestId=" + requestId +
+                ", requestDate=" + requestDate +
                 ", amount=" + amount +
                 ", Description='" + Description + '\'' +
-                ", user=" + user +
                 ", reimbursementStatus=" + reimbursementStatus +
+                ", user=" + user +
                 '}';
     }
 
