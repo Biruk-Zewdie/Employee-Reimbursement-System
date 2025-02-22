@@ -39,5 +39,18 @@ public class ReimbursementController {
 
     }
 
+    @GetMapping("/{requestId}")
+    public ResponseEntity<ReimbursementDTO> getReimbursementByRequestId (@PathVariable int requestId){
+        ReimbursementDTO reimbursementDTO = reimbursementService.getReimbursementById(requestId);
+        return ResponseEntity.ok(reimbursementDTO);
+    }
+
+    @GetMapping("/pending")
+    public ResponseEntity<List<ReimbursementDTO>> getPendingReimbursements () {
+        List<ReimbursementDTO> pendingReimbursements = reimbursementService.getPendingReimbursements();
+
+        return ResponseEntity.ok(pendingReimbursements);
+    }
+
 
 }

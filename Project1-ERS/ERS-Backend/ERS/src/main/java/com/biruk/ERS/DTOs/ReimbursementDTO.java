@@ -16,10 +16,12 @@ public class ReimbursementDTO {
 
 
     public ReimbursementDTO (){
+        this.reimbursementStatus = ReimbursementClaim.ReimbursementStatus.pending;
 
     }
 
-    public ReimbursementDTO(int requestId, LocalDateTime requestDate, double amount, String description, ReimbursementClaim.ReimbursementStatus reimbursementStatus, int userId) {
+    public ReimbursementDTO(int requestId, LocalDateTime requestDate, double amount, String description,
+                            ReimbursementClaim.ReimbursementStatus reimbursementStatus, int userId) {
         this.requestId = requestId;
         this.requestDate = requestDate;
         this.amount = amount;

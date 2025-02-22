@@ -3,8 +3,10 @@ package com.biruk.ERS.Services;
 import com.biruk.ERS.DAOs.UserDAO;
 import com.biruk.ERS.DTOs.LoginDTO;
 import com.biruk.ERS.DTOs.UserDTO;
+import com.biruk.ERS.Exceptions.UsernameAlreadyExistsException;
 import com.biruk.ERS.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,21 +23,26 @@ public class AuthService {
 
         System.out.println(user);
 
-        User  registeredUser = userDAO.save(user);
+        if (userDAO.findByUsername(user.getUsername()).isPresent()){
+            throw new UsernameAlreadyExistsException("Username '" + user.getUsername() + "' is already taken.");
+        }
 
-        //converting user to userDTO before sending it to the cloud.
-        UserDTO newUserDTO = new UserDTO(
-                registeredUser.getUserId(),
-                registeredUser.getFirstName(),
-                registeredUser.getLastName(),
-                registeredUser.getUsername(),
-                registeredUser.getEmail(),
-                registeredUser.getRole()
-        );
+        try{
+            User  registeredUser = userDAO.save(user);
 
+            //converting user to userDTO before sending it to the cloud.
+            return new UserDTO(
+                    registeredUser.getUserId(),
+                    registeredUser.getFirstName(),
+                    registeredUser.getLastName(),
+                    registeredUser.getUsername(),
+                    registeredUser.getEmail(),
+                    registeredUser.getRole()
+            );
+        }catch(DataIntegrityViolationException e){
+            throw new UsernameAlreadyExistsException("Username '" + user.getUsername() + "' is already taken.");
 
-
-        return newUserDTO;
+        }
     }
 
     public UserDTO login (LoginDTO loginDTO){

@@ -24,7 +24,9 @@ public class ReimbursementClaim {
 
     private String Description;
 
-    private ReimbursementStatus reimbursementStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ReimbursementStatus reimbursementStatus = ReimbursementStatus.pending;
 
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
