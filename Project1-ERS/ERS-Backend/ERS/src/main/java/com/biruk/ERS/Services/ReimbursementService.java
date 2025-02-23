@@ -72,9 +72,17 @@ public class ReimbursementService {
 
     //Get all reimbursements claims
 
-    public List<ReimbursementDTO> getAllReimbursements () {
+    public List<ReimbursementDTO> getAllReimbursements (String status) {
 
-        List<ReimbursementClaim> returnedReimbursements = reimbursementDAO.findAll();
+        List<ReimbursementClaim> returnedReimbursements;
+
+        if (status == null || status.equalsIgnoreCase("all")){
+            returnedReimbursements = reimbursementDAO.findAll();
+        }else{
+            ReimbursementClaim.ReimbursementStatus reimbursementStatus = ReimbursementClaim.ReimbursementStatus.valueOf(status.toLowerCase());
+
+            returnedReimbursements = reimbursementDAO.findByReimbursementStatus(reimbursementStatus);
+        }
 
         System.out.println(returnedReimbursements);
 

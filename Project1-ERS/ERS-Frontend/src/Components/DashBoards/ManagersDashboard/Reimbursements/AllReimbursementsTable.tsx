@@ -6,7 +6,7 @@ export const AllReimbursementsTable: React.FC = () => {
 
     const [reimbursements, setReimbursements] = useState <Reimbursement []> ([]);
 
-    const [status, setStatus] = useState <string> ("")
+    const [status, setStatus] = useState <string> ("all")
     
 
 
@@ -14,15 +14,22 @@ export const AllReimbursementsTable: React.FC = () => {
 
         getAllReimbursements();
 
-    }, []) 
+    }, [status])      //// Re-fetch data whenever the filter changes
 
 
     const getAllReimbursements = async () => {
 
         try {
-            const response = await axios.get("http://localhost:8080/reimbursements", {withCredentials:true})
+
+            let url = "http://localhost:8080/reimbursements";
+            if (status !== "all"){
+                url = `http://localhost:8080/reimbursements?status=${status}`;
+            }
+
+            const response = await axios.get(url, {withCredentials:true})
 
             console.log (response);
+            console.log (status);
 
             setReimbursements(response.data);
 
@@ -64,7 +71,7 @@ export const AllReimbursementsTable: React.FC = () => {
 
         try {
             const response = await axios.patch(
-                `http://localhost:8080/reimbursements/${reimbursement.requestId}/status?status=${reimbursement.reimbursementStatus}`,
+                `http://localhost:8080/reimbursements/${reimbursement.requestId}/status?status=${newStatus}`,
                 {},
                  {withCredentials: true});
 
@@ -80,6 +87,50 @@ export const AllReimbursementsTable: React.FC = () => {
     return (
         <div>
             <h2> Reimbursements</h2>
+              {/* Radio buttons for filtering */}
+              <div>
+                <label>
+                    <input
+                        type="radio"
+                        name="status"
+                        value="all"
+                        checked={status === "all"}
+                        onChange={() => setStatus("all")}
+                    />
+                    All
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="status"
+                        value="pending"
+                        checked={status === "pending"}
+                        onChange={() => setStatus("pending")}
+                    />
+                    Pending
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="status"
+                        value="approved"
+                        checked={status === "approved"}
+                        onChange={() => setStatus("approved")}
+                    />
+                    Approved
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="status"
+                        value="denied"
+                        checked={status === "denied"}
+                        onChange={() => setStatus("denied")}
+                    />
+                    Denied
+                </label>
+            </div>
+
             <table>
                 <thead>
                     <tr>

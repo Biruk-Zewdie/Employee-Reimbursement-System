@@ -36,9 +36,9 @@ public class ReimbursementController {
     //get all reimbursements (only for managers)
     @GetMapping
     @ManagerOnly
-    public ResponseEntity<List<ReimbursementDTO>> getAllReimbursements () {
+    public ResponseEntity<List<ReimbursementDTO>> getAllReimbursements (@RequestParam(required = false, defaultValue = "all") String status) {
 
-        List<ReimbursementDTO> reimbursementClaims = reimbursementService.getAllReimbursements();
+        List<ReimbursementDTO> reimbursementClaims = reimbursementService.getAllReimbursements(status);
 
         return ResponseEntity.ok(reimbursementClaims);
 
