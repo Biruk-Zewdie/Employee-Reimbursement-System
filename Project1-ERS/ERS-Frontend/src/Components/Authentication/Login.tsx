@@ -60,31 +60,33 @@ export const Login: React.FC = () => {
 
     return (
         <div className='login'>
-            <h1>Welcome</h1>
-            <h2>Log in</h2>
-            <form onSubmit={handleFormSubmit}>
-                <div className='login-form'>
-                    <label htmlFor='username'>Username</label>
-                    <input
-                        type='text'
-                        name='username'
-                        id='username'
-                        ref={usernameRef}
-                        onChange={storeValues}
-                    />
-
-                    <label htmlFor='password'>Password</label>
-                    <input
-                        type='password'
-                        name='password'
-                        id='password'
-                        onChange={storeValues}
-                    />
-                    <button className='login-data-submit-btn' type='submit'>Continue</button>
-                </div>
-            </form>
-            <h5>New to Expense Reimbursement System?</h5>
-            <button className='to-create-account-btn' onClick={() => navigate("/register")}>Register</button>
+            <div className='login-container'>
+                <h1>Welcome</h1>
+                <h2>Log in</h2>
+                <form onSubmit={handleFormSubmit}>
+                    <div className='login-form'>
+                        <label htmlFor='username'>Username</label>
+                        <input
+                            type='text'
+                            name='username'
+                            id='username'
+                            ref={usernameRef}
+                            onChange={storeValues}
+                        />
+    
+                        <label htmlFor='password'>Password</label>
+                        <input
+                            type='password'
+                            name='password'
+                            id='password'
+                            onChange={storeValues}
+                        />
+                        <button className='login-data-submit-btn' type='submit'>Continue</button>
+                    </div>
+                </form>
+                <h5>New to Expense Reimbursement System?</h5>
+                <button className='to-create-account-btn' onClick={() => navigate("/register")}>Register</button>
+            </div>
         </div>
     );
-};
+}

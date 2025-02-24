@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Reimbursement } from "../../../../Interfaces/Riembursement"
 import axios from "axios";
+import './AllReimbursementsTable.css'
 
 export const AllReimbursementsTable: React.FC = () => {
 
