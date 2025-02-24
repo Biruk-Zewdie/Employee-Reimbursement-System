@@ -6,6 +6,7 @@ import { Register } from './Components/Authentication/Register'
 import { AllEmployeesTable } from './Components/DashBoards/ManagersDashboard/Users/AllEmployeesTable'
 import { AllReimbursementsTable } from './Components/DashBoards/ManagersDashboard/Reimbursements/AllReimbursementsTable'
 import { CreateReimbursement } from './Components/DashBoards/CreateReimbursement'
+import { MyReimbursements } from './Components/DashBoards/EmployeeDashboard/myReimbursements'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/manager/allEmployees' element = {<AllEmployeesTable/>}/>
         <Route path='/manager/allReimbursements' element = {<AllReimbursementsTable/>}/>
         <Route path='/createReimbursement' element = {<CreateReimbursement/>}/>
+        <Route path='/myReimbursements' element={<MyReimbursements/>}/>
       </Routes>
       </BrowserRouter>
     {/* <Login /> */}

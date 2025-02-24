@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './CreateReimbursement.css';
+import { useNavigate } from 'react-router-dom';
 
 interface Reimbursement {
-    userId: number;
     amount: string;
     description: string;
     reimbursementStatus: string;
@@ -11,7 +11,6 @@ interface Reimbursement {
 
 export const CreateReimbursement: React.FC = () => {
     const [reimbursement, setReimbursement] = useState<Reimbursement>({
-        userId: 0,  // User enters their ID manually
         amount: '',
         description: '',
         reimbursementStatus: 'pending',
@@ -20,40 +19,47 @@ export const CreateReimbursement: React.FC = () => {
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
 
+    const navigate = useNavigate();
+
+    // Retrieve userId from localStorage
+    const userId = localStorage.getItem("userId");
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setReimbursement({ ...reimbursement, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-    
-        if (!reimbursement.userId || !reimbursement.amount || !reimbursement.description) {
+
+        if (!userId || !reimbursement.amount || !reimbursement.description) {
             setError('Please fill in all fields.');
             return;
         }
-    
+
         setLoading(true);
         setError('');
-    
+
         try {
             const requestBody = {
-                user: { userId: reimbursement.userId },  // Include user as an object
+                user: { userId: Number(userId) }, // Convert userId to number
                 amount: reimbursement.amount,
                 description: reimbursement.description,
                 reimbursementStatus: reimbursement.reimbursementStatus,
             };
-    
+
             const response = await axios.post('http://localhost:8080/reimbursements', requestBody, { withCredentials: true });
-    
+
             console.log(response);
-    
             alert('Reimbursement submitted successfully!');
+            
             setReimbursement({
-                userId: 0,
                 amount: '',
                 description: '',
                 reimbursementStatus: 'pending',
             });
+
+            navigate('/myReimbursements');  
+
         } catch (error) {
             console.error("Error:", error);
             setError('Failed to submit reimbursement. Please try again.');
@@ -61,22 +67,12 @@ export const CreateReimbursement: React.FC = () => {
             setLoading(false);
         }
     };
-    
 
     return (
         <div className="create-reimbursement">
             <h2>Create Reimbursement</h2>
+            <button onClick={() => navigate("/myReimbursements")}>Back</button>
             <form className="create-reimbursement-form" onSubmit={handleSubmit}>
-                <label>User ID</label>
-                <input
-                    type="number"
-                    name="userId"
-                    value={reimbursement.userId || ''}
-                    onChange={handleChange}
-                    placeholder="Enter your user ID"
-                    required
-                />
-
                 <label>Amount ($)</label>
                 <input
                     type="number"

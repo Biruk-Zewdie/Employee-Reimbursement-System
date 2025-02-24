@@ -31,12 +31,15 @@ export const Login: React.FC = () => {
             console.log("Response:", response);
             store.loggedInUser = response.data;
 
+             // Save the userId in localStorage
+             localStorage.setItem("userId", response.data.userId); // Save userId (or the whole user object if needed)
+
             alert(store.loggedInUser.username + " has logged in! Welcome.");
 
             if (store.loggedInUser.role === "Manager") {
                 navigate("manager/allEmployees");
             } else {
-                navigate("/reimbursements");
+                navigate("/myReimbursements");
             }
         } catch (error:any) {
             console.error("Login error:", error);
