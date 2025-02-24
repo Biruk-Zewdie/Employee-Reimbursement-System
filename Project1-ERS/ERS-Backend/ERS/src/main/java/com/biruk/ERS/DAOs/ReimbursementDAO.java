@@ -14,4 +14,5 @@ public interface ReimbursementDAO extends JpaRepository <ReimbursementClaim, Int
 
     //Fetch reimbursements with "Pending..." status.
     public List<ReimbursementClaim> findByReimbursementStatus(ReimbursementClaim.ReimbursementStatus status);
+
 }

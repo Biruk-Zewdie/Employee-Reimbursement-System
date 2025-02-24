@@ -110,25 +110,26 @@ public class ReimbursementService {
     }
 
     //Get all reimbursement claims requested under a specific user(userId)
-    public List <ReimbursementDTO> getReimbursementByUserId (int userId){
-        List <ReimbursementClaim> claims = reimbursementDAO.getByUser_UserId(userId);
+    public List <ReimbursementDTO> getReimbursementByUserId (int userId) {
+        List<ReimbursementClaim> claims = reimbursementDAO.getByUser_UserId(userId);
 
-        if (claims.isEmpty()){
+        if (claims.isEmpty()) {
             throw new NoSuchElementException("No reimbursement found for user ID: " + userId);
         }
 
-        List <ReimbursementDTO> returnedDtoList = new ArrayList<>();
+        List<ReimbursementDTO> returnedDtoList = new ArrayList<>();
 
-        for (ReimbursementClaim claim: claims){
+        for (ReimbursementClaim claim : claims) {
             returnedDtoList.add(new ReimbursementDTO(claim));
         }
 
         return returnedDtoList;
+
     }
 
 
-
     //Get reimbursement claim by Pending Status
+
 
     public List <ReimbursementDTO> getPendingReimbursements () {
         List <ReimbursementClaim> pendingClaim = reimbursementDAO.findByReimbursementStatus(ReimbursementClaim.ReimbursementStatus.pending);
@@ -148,7 +149,8 @@ public class ReimbursementService {
 
 
 
-    //Delete reimbursement claim by request ID - only done by manager
+
+        //Delete reimbursement claim by request ID - only done by manager
     public void deleteReimbursement (int requestId){
 
         if (!reimbursementDAO.existsById(requestId)){
@@ -169,4 +171,7 @@ public class ReimbursementService {
         return new ReimbursementDTO(reimbursementDAO.save(claim));      //return updated response
     }
 
-}
+
+    }
+
+
