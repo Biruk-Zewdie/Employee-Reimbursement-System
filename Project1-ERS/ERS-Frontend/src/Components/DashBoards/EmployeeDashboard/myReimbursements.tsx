@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { Reimbursement } from "../../../Interfaces/Riembursement"  // Make sure the path is correct
 import { useNavigate } from "react-router-dom"
 import { LogoutButton } from "../../Authentication/LogoutButton"
+import "./MyReimbursements.css"
 
 export const MyReimbursements: React.FC = () => {
   const [myReimbursements, setMyReimbursements] = useState<Reimbursement[]>([])
@@ -45,35 +46,42 @@ export const MyReimbursements: React.FC = () => {
     }
   }
 
-  return (
-    <div>
-        <h1 style={{ fontSize: '38px' }}>{firstName}'s Reimbursements</h1>
-        <button onClick={handleRequestReimbursement}>request reimbursement</button>
-        <table>
-        <thead>
-            <tr>
-            <th>Request ID</th>
-            <th>Requested By</th>
-            <th>Email</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            {myReimbursements.map((reimbursement: Reimbursement) => (
-            <tr key={reimbursement.requestId}>
-                <td>{reimbursement.requestId}</td>
-                <td>{reimbursement.user.firstName}</td>
-                <td>{reimbursement.user.email}</td>
-                <td>{reimbursement.amount}</td>
-                <td>{reimbursement.description}</td>
-                <td>{reimbursement.reimbursementStatus}</td>
-            </tr>
-            ))}
-        </tbody>
-        </table>
-        <LogoutButton/>
+return (
+    <div className="container">
+        <h1 className="header">{firstName}'s Reimbursements</h1>
+        <button className="request-btn" onClick={handleRequestReimbursement}>
+            Request Reimbursement
+        </button>
+        
+        <div className="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>Requested By</th>
+                        <th>Email</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {myReimbursements.map((reimbursement: Reimbursement) => (
+                        <tr key={reimbursement.requestId}>
+                            <td>{reimbursement.requestId}</td>
+                            <td>{reimbursement.user.firstName}</td>
+                            <td>{reimbursement.user.email}</td>
+                            <td>{reimbursement.amount}</td>
+                            <td>{reimbursement.description}</td>
+                            <td>{reimbursement.reimbursementStatus}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+        
+        <LogoutButton />
     </div>
-  )
-}
+);
+};
+

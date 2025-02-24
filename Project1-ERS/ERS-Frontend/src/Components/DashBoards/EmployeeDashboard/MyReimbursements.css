@@ -1,0 +1,106 @@
+/* General Styles */
+.container {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #6f7dff, #a28ef0);
+  }
+  
+  /* Header */
+  .header {
+    font-size: 38px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Button */
+  .request-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .request-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* Table Styling */
+  .table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  thead {
+    background-color: #333;
+    color: white;
+  }
+  
+  thead th {
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody tr:hover {
+    background-color: #e2e6ea;
+  }
+  
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  /* Logout Button */
+  button.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  button.logout-btn:hover {
+    background-color: #c82333;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .header {
+      font-size: 28px;
+    }
+  
+    .request-btn {
+      font-size: 14px;
+    }
+  
+    table {
+      font-size: 14px;
+    }
+  }
+  

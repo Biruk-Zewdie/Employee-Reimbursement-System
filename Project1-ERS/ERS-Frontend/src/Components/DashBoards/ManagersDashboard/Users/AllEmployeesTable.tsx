@@ -1,6 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import {User} from "../../../../Interfaces/User.ts"
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { LogoutButton } from "../../../Authentication/LogoutButton.tsx";
 
 export const AllEmployeesTable: React.FC = () =>{
 
@@ -58,6 +61,22 @@ export const AllEmployeesTable: React.FC = () =>{
 
     return (
         <div>
+            <div>
+            <Navbar bg="dark" variant="dark" expand="lg">
+                <Container>
+                    <Navbar.Brand href="/manager/allEmployees">Employees</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="/manager/allReimbursements">Reimbursements</Nav.Link>
+                            <Nav.Link href="/createReimbursement">Request Reimbursement </Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+
+            </div>
+
         <h2>Employees</h2>
             <table>
                 <thead>
@@ -87,6 +106,7 @@ export const AllEmployeesTable: React.FC = () =>{
                     }
                 </tbody>
             </table>
+            <LogoutButton/>
         </div>
     )
 

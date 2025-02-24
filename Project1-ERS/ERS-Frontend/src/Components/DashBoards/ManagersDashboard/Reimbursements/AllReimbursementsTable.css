@@ -1,93 +1,44 @@
-/* General styling */
-
-html{
-    background-color: white;
-    height: 100%;
-    width: 100%;
-}
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-}
-
-h2 {
-    color: #333;
-}
-
 /* Filter section */
 div label {
     margin-right: 15px;
     font-weight: bold;
 }
 
-/* Table styling */
-table {
+.table-container {
     width: 90%;
+    max-height: 70vh; /* Limit the table height */
+    overflow-y: auto; /* Enable scrolling */
     margin: 20px auto;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  table {
+    width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(108, 95, 95, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-thead {
-    background-color: black;
+  }
+  
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: black; /* Ensure visibility */
     color: white;
-}
-
-thead th {
+  }
+  
+  thead th {
     padding: 12px;
     text-align: left;
-    font-size: 16px;
-}
-
-tbody tr:nth-child(even) {
+  }
+  
+  tbody tr:nth-child(even) {
     background-color: #f9f9f9;
-}
-
-tbody tr:hover {
-    background-color: #e2e6ea;
-}
-
-td {
-    padding: 12px;
+  }
+  
+  td {
+    padding: 10px;
     border-bottom: 1px solid #ddd;
-}
-
-/* Buttons */
-button {
-    margin: 5px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-button:nth-child(1) { /* Approve button */
-    background-color: #28a745;
-    color: white;
-}
-
-button:nth-child(2) { /* Deny button */
-    background-color: #dc3545;
-    color: white;
-}
-
-button:nth-child(3) { /* Delete button */
-    background-color: #6c757d;
-    color: white;
-}
-
-button:hover:not(:disabled) {
-    opacity: 0.8;
-}
+  }
+  

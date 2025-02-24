@@ -33,6 +33,7 @@ export const Login: React.FC = () => {
 
              // Save the userId in localStorage
              localStorage.setItem("userId", response.data.userId); // Save userId (or the whole user object if needed)
+             localStorage.setItem("role", response.data.role); // Save userId (or the whole user object if needed)
 
             alert(store.loggedInUser.username + " has logged in! Welcome.");
 

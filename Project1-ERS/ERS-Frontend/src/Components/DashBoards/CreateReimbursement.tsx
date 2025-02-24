@@ -23,6 +23,7 @@ export const CreateReimbursement: React.FC = () => {
 
     // Retrieve userId from localStorage
     const userId = localStorage.getItem("userId");
+    const role = localStorage.getItem("role");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setReimbursement({ ...reimbursement, [e.target.name]: e.target.value });
@@ -68,10 +69,22 @@ export const CreateReimbursement: React.FC = () => {
         }
     };
 
+    const handleBackBtnClick = () =>{
+
+        console.log(typeof(role))
+
+        if (role === "Manager"){
+            navigate("/manager/allEmployees");
+        }else{
+            navigate("/myReimbursements")
+        }
+
+    }
+
     return (
         <div className="create-reimbursement">
             <h2>Create Reimbursement</h2>
-            <button onClick={() => navigate("/myReimbursements")}>Back</button>
+            <button onClick={handleBackBtnClick}>Back</button>
             <form className="create-reimbursement-form" onSubmit={handleSubmit}>
                 <label>Amount ($)</label>
                 <input

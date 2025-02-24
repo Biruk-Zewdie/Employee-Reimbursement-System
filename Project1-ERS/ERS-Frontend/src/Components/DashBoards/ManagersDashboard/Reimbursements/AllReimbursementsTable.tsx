@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Reimbursement } from "../../../../Interfaces/Riembursement"
 import axios from "axios";
 import './AllReimbursementsTable.css'
+import { useNavigate } from "react-router-dom";
 
 export const AllReimbursementsTable: React.FC = () => {
 
@@ -9,7 +10,7 @@ export const AllReimbursementsTable: React.FC = () => {
 
     const [status, setStatus] = useState <string> ("all")
     
-
+    const navigate = useNavigate();
 
     useEffect (() => {
 
@@ -170,6 +171,7 @@ export const AllReimbursementsTable: React.FC = () => {
                     }
                 </tbody>
             </table>
+            <button onClick={() => navigate("/manager/allEmployees")}>Back to Employees</button>
         </div>
     )
 
